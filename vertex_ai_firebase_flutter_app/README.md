@@ -73,4 +73,4 @@ The application features platform-optimized layouts:
 ### Mobile Layout (Tabbed)
 
 Same as above, but laid out as two tabs instead of side by side.
-Various adaptions to mobile to make things easier for finger interactions.
+Various adaptations to mobile to make things easier for finger interactions.
