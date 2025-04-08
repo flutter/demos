@@ -8,7 +8,7 @@ source "$DIR/flutter_ci_script_shared.sh"
 flutter doctor -v
 
 declare -ar PROJECT_NAMES=(
-    # add projects here
+    "vertex_ai_firebase_flutter_app"
 )
 
 ci_projects "master" "${PROJECT_NAMES[@]}"
