@@ -55,7 +55,7 @@ The application is designed to work across platforms:
 
 The application features platform-optimized layouts:
 
-### Desktop Layout (Split-Screen)
+### Desktop layout (split-screen)
 
 - **Left Side (Interaction Area)**:
   - Color display rectangle
