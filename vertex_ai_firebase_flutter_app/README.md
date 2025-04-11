@@ -31,7 +31,7 @@ Colorist serves as a practical testbed for exploring how Gemini handles tool req
 - **Color Information Display**: Technical details (RGB values, hex code) of the generated color
 - **History Feature**: Last 10 colors generated as clickable thumbnails
 - **Visual Logging**: Display raw streaming text from LLM with tool calls/responses
-- **Context Management**: Update LLM context when user interacts with color history
+- **Context Management**: Update LLM context when the user interacts with color history
 - **Streaming State Visualization**: Visual indicators for streaming vs. complete messages
 
 ## Platform support
