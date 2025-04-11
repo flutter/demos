@@ -51,7 +51,7 @@ The application is designed to work across platforms:
 - **Firebase Configuration**: FlutterFire CLI
 - **Responsive Design**: Adaptive layouts for cross-platform support
 
-## User Interface
+## User interface
 
 The application features platform-optimized layouts:
 
