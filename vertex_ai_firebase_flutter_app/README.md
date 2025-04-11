@@ -34,7 +34,7 @@ Colorist serves as a practical testbed for exploring how Gemini handles tool req
 - **Context Management**: Update LLM context when user interacts with color history
 - **Streaming State Visualization**: Visual indicators for streaming vs. complete messages
 
-## Platform Support
+## Platform support
 
 The application is designed to work across platforms:
 
