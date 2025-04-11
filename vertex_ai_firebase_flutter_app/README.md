@@ -70,7 +70,7 @@ The application features platform-optimized layouts:
   - Tool calls and responses visualization
   - Formatted log entries for debugging
 
-### Mobile Layout (Tabbed)
+### Mobile layout (tabbed)
 
 Same as above, but laid out as two tabs instead of side by side.
 Various adaptations to mobile to make things easier for finger interactions.
