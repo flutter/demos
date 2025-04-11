@@ -21,7 +21,7 @@ flutterfire configure
 
 With that you should have a working application that you can ask to generate colors for you.
 
-## Project Overview
+## Project overview
 
 Colorist serves as a practical testbed for exploring how Gemini handles tool requests and interprets natural language color descriptions into technical color components. The app features:
 
