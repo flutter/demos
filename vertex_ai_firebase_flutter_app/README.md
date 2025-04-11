@@ -42,7 +42,7 @@ The application is designed to work across platforms:
 - **Mobile**: iOS and Android
 - **Web**: Desktop and mobile
 
-## Technology Stack
+## Technology stack
 
 - **Framework**: Flutter/Dart
 - **LLM**: Gemini via Firebase Vertex AI (using the chat turn by turn with function calling)
