@@ -6,7 +6,7 @@ A Flutter application that explores LLM tooling interfaces by allowing users to 
 
 You will need to configure a [Firebase project with access to Gemini API](https://firebase.google.com/docs/gemini-in-firebase/set-up-gemini). For more detail please see [Get started with the Gemini API using the Vertex AI in Firebase SDKs](https://firebase.google.com/docs/vertex-ai/get-started?platform=flutter).
 
-This project is not configured for any particular Firebase project. To configure it correctly you need to install `flutterfire`:
+This project is not configured for any particular Firebase project. To configure it, install `flutterfire_cli`:
 
 ```console
 flutter pub global activate flutterfire_cli
