@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "539421040841",
+    "project_id": "vertex-ai-for-firebase-e7add",
+    "storage_bucket": "vertex-ai-for-firebase-e7add.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539421040841:android:b58b254c332f56b2ff2d18",
+        "android_client_info": {
+          "package_name": "com.example.scavenger_hunt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7lwPDInkTLKdL03JKsHQMUHQLvjsQ568"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
