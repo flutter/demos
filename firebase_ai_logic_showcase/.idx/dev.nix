@@ -5,10 +5,9 @@
   channel = "stable-24.05"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
+    pkgs.nodePackages.firebase-tools
     pkgs.jdk21
     pkgs.unzip
-    pkgs.nodejs_22
-    pkgs.nodePackages.nodemon
   ];
   # Sets environment variables in the workspace
   env = {
@@ -30,12 +29,11 @@
       "Dart-Code.flutter"
       "Dart-Code.dart-code"
       "hashicorp.terraform"
-      "ms-vscode.js-debug"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
       onCreate = { 
-        npm-install = "flutter pub get";
+        installDependencies = "flutter pub get";
         default.openFiles = [
           "README.md"
           "lib/main.dart"

@@ -9,6 +9,9 @@
         "Android",
         "iOS"
     ],
+    "host": {
+      "virtualization": true
+    },
     "icon_image_url": "https://www.gstatic.com/monospace/240513/logo_firebase.svg",
     "publisher": "Google LLC",
     "params": [
