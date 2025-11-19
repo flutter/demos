@@ -53,7 +53,7 @@ class ChatDemoNanoState extends ConsumerState<ChatDemoNano> {
   void initState() {
     super.initState();
     _chatService = ChatService(ref);
-    geminiModels.selectModel('gemini-2.5-flash-image-preview');
+    geminiModels.selectModel('gemini-2.5-flash-image');
     _chatService.init();
     _userTextInputController.text =
         'Hot air balloons rising over the San Francisco Bay at golden hour with a view of the Golden Gate Bridge. Make it anime style.';
