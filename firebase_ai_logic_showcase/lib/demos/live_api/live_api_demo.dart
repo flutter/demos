@@ -36,7 +36,7 @@ class LiveAPIDemo extends ConsumerStatefulWidget {
 /// with the [LiveApiService] and I/O utilities.
 class _LiveAPIDemoState extends ConsumerState<LiveAPIDemo> {
   // Service for interacting with the Gemini API via Firebase AI.
-  late final LiveApiService _liveApiService;
+  late LiveApiService _liveApiService;
 
   // Utilities for handling device I/O.
   late final AudioInput _audioInput = AudioInput();
@@ -44,7 +44,6 @@ class _LiveAPIDemoState extends ConsumerState<LiveAPIDemo> {
   late final VideoInput _videoInput = VideoInput();
 
   // Initialization flags.
-  bool _audioIsInitialized = false;
   bool _videoIsInitialized = false;
 
   // UI State flags.
@@ -56,6 +55,20 @@ class _LiveAPIDemoState extends ConsumerState<LiveAPIDemo> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkAndInitializeIO();
+    });
+  }
+
+  @override
+  void didUpdateWidget(LiveAPIDemo oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _checkAndInitializeIO();
+  }
+
+  Future<void> _checkAndInitializeIO() async {
+    await _initializeAudio();
+    await _initializeVideo();
     _liveApiService = LiveApiService(
       audioOutput: _audioOutput,
       ref: ref, // Pass the ref to the service
@@ -63,11 +76,6 @@ class _LiveAPIDemoState extends ConsumerState<LiveAPIDemo> {
       onImageGenerated: _onImageGenerated,
       onError: _showErrorSnackBar,
     );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _initializeAudio();
-      _initializeVideo();
-    });
   }
 
   @override
@@ -175,10 +183,6 @@ class _LiveAPIDemoState extends ConsumerState<LiveAPIDemo> {
     try {
       await _audioInput.init(); // Initialize Audio Input
       await _audioOutput.init(); // Initialize Audio Output
-
-      setState(() {
-        _audioIsInitialized = true;
-      });
     } catch (e) {
       log("Error during audio initialization: $e");
       if (!mounted) return;
@@ -245,39 +249,49 @@ class _LiveAPIDemoState extends ConsumerState<LiveAPIDemo> {
     final audioInput = _audioInput;
     final videoInput = _videoInput;
 
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: const LiveApiDemoAppBar(),
-      body: LiveApiBody(
-        cameraIsActive: _cameraIsActive,
-        cameraController: videoInput.controllerInitialized
-            ? videoInput.cameraController
-            : null,
-        settingUpLiveSession: _isConnecting,
-        loadingImage: _loadingImage,
-      ),
-      bottomNavigationBar: BottomBar(
-        children: [
-          FlipCameraButton(
-            onPressed: _cameraIsActive && videoInput.cameras.length > 1
-                ? videoInput.flipCamera
-                : null,
+    return ListenableBuilder(
+      listenable: audioInput,
+      builder: (context, child) {
+        return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          body: Column(
+            children: [
+              Expanded(
+                child: LiveApiBody(
+                  cameraIsActive: _cameraIsActive,
+                  cameraController: videoInput.controllerInitialized
+                      ? videoInput.cameraController
+                      : null,
+                  settingUpLiveSession: _isConnecting,
+                  loadingImage: _loadingImage,
+                ),
+              ),
+              BottomBar(
+                children: [
+                  FlipCameraButton(
+                    onPressed: _cameraIsActive && videoInput.cameras.length > 1
+                        ? videoInput.flipCamera
+                        : null,
+                  ),
+                  VideoButton(
+                    isActive: _cameraIsActive,
+                    onPressed: toggleVideoStream,
+                  ),
+                  AudioVisualizer(
+                    audioStreamIsActive: _isCallActive,
+                    amplitudeStream: audioInput.amplitudeStream,
+                  ),
+                  MuteButton(
+                    isMuted: audioInput.isPaused,
+                    onPressed: _isCallActive ? toggleMuteInput : null,
+                  ),
+                  CallButton(isActive: _isCallActive, onPressed: toggleCall),
+                ],
+              ),
+            ],
           ),
-          VideoButton(isActive: _cameraIsActive, onPressed: toggleVideoStream),
-          AudioVisualizer(
-            audioStreamIsActive: _isCallActive,
-            amplitudeStream: audioInput.amplitudeStream,
-          ),
-          MuteButton(
-            isMuted: audioInput.isPaused,
-            onPressed: _isCallActive ? toggleMuteInput : null,
-          ),
-          CallButton(
-            isActive: _isCallActive,
-            onPressed: _audioIsInitialized ? toggleCall : null,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

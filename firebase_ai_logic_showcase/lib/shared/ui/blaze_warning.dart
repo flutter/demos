@@ -39,6 +39,33 @@ class BlazeWarning extends StatelessWidget {
                 ),
               ),
               TextSpan(text: '.'),
+              TextSpan(text: '\n\n'),
+              TextSpan(
+                text:
+                    'Eligible developers can claim ',
+              ),
+              WidgetSpan(
+                baseline: TextBaseline.ideographic,
+                alignment: PlaceholderAlignment.top,
+                child: Link(
+                  uri: Uri.parse(
+                    'https://firebase.blog/posts/2024/11/claim-300-to-get-started',
+                  ),
+                  target: LinkTarget.blank,
+                  builder: (context, followLink) => GestureDetector(
+                    onTap: followLink,
+                    child: Text(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        height: 1.15,
+                        decoration: TextDecoration.underline,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      '\$300 of credits',
+                    ),
+                  ),
+                ),
+              ),
+              TextSpan(text: ' to get started.'),
             ],
           ),
         ),

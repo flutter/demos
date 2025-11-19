@@ -24,16 +24,18 @@ import '../../shared/ui/app_frame.dart';
 import '../../shared/ui/app_spacing.dart';
 import '../../shared/ui/chat_components/ui_components.dart';
 import '../../shared/chat_service.dart';
+import '../../shared/ui/chat_components/model_picker.dart';
 import '../../shared/models/models.dart';
 
-class ChatDemo extends ConsumerStatefulWidget {
-  const ChatDemo({super.key});
+class ChatDemoNano extends ConsumerStatefulWidget {
+  const ChatDemoNano({super.key, this.isSelected = false});
+  final bool isSelected;
 
   @override
-  ConsumerState<ChatDemo> createState() => _ChatDemoState();
+  ConsumerState<ChatDemoNano> createState() => ChatDemoNanoState();
 }
 
-class _ChatDemoState extends ConsumerState<ChatDemo> {
+class ChatDemoNanoState extends ConsumerState<ChatDemoNano> {
   // Service for interacting with the Gemini API.
   late final ChatService _chatService;
 
@@ -44,15 +46,37 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
   Uint8List? _attachment;
   final ScrollController _scrollController = ScrollController();
   bool _loading = false;
+  OverlayPortalController opController = OverlayPortalController();
+  static bool _pickerHasBeenShown = false;
 
   @override
   void initState() {
     super.initState();
-    final model = geminiModels.selectModel('gemini-2.5-flash');
-    _chatService = ChatService(ref, model);
+    _chatService = ChatService(ref);
+    geminiModels.selectModel('gemini-2.5-flash-image-preview');
     _chatService.init();
     _userTextInputController.text =
-        'Hey Gemini! Can you set the app color to purple?';
+        'Hot air balloons rising over the San Francisco Bay at golden hour with a view of the Golden Gate Bridge. Make it anime style.';
+    _checkAndShowPicker();
+  }
+
+  @override
+  void didUpdateWidget(ChatDemoNano oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isSelected != oldWidget.isSelected) {
+      _checkAndShowPicker();
+    }
+  }
+
+  void _checkAndShowPicker() {
+    if (widget.isSelected && !_pickerHasBeenShown) {
+      _pickerHasBeenShown = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          showModelPicker();
+        }
+      });
+    }
   }
 
   @override
@@ -156,6 +180,25 @@ class _ChatDemoState extends ConsumerState<ChatDemo> {
       });
       _scrollToEnd();
     }
+  }
+
+  void showModelPicker() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ModelPicker(
+          selectedModel: geminiModels.selectedModel,
+          onSelected: (value) {
+            _chatService.changeModel(value);
+            setState(() {
+              _userTextInputController.text =
+                  geminiModels.selectedModel.defaultPrompt;
+              _messages.clear();
+            });
+          },
+        );
+      },
+    );
   }
 
   @override

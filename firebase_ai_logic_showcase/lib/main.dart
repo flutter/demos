@@ -41,6 +41,11 @@ class MyApp extends ConsumerWidget {
           brightness: Brightness.dark,
           dynamicSchemeVariant: DynamicSchemeVariant.tonalSpot,
         ).copyWith(surface: appColor),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey.shade900,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey.shade400,
+        ),
       ),
       debugShowCheckedModeBanner: false,
     );

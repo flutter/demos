@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../shared/ui/app_spacing.dart';
 import '../../../shared/ui/blaze_warning.dart';
-import '../models/gemini_model.dart';
+import '../../../shared/models/gemini_model.dart';
 
 class ModelPicker extends StatefulWidget {
   const ModelPicker({

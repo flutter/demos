@@ -12,5 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export 'image_display.dart';
-export 'prompt_input.dart';
+export './chat_response.dart';
+export './gemini_model.dart';

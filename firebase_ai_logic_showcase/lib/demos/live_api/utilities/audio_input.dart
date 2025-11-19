@@ -23,7 +23,7 @@ class AudioInput extends ChangeNotifier {
   AudioRecorder? _recorder;
   RecordConfig recordConfig = RecordConfig(
     encoder: AudioEncoder.pcm16bits,
-    sampleRate: 24000,
+    sampleRate: 16000,
     numChannels: 1,
     echoCancel: true,
     noiseSuppress: true,
