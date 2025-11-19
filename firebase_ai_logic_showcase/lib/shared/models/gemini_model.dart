@@ -82,7 +82,8 @@ class GeminiModels {
           responseModalities: [ResponseModalities.text],
         ),
       ),
-      defaultPrompt: 'If you roll 2 dices, what are the odds that you roll "7" ?',
+      defaultPrompt:
+          'If you roll 2 dices, what are the odds that you roll "7" ?',
     ),
   };
 
