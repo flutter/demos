@@ -859,45 +859,10 @@ var fakeForecast = {
 };
 ```
 
-## Functions
+## Learn more
 
-Good area to split to another tutorial.
+For more information and detailed references on the technologies used in this workshop, check out the following resources:
 
-Create a file named `lib/tool_calls.dart`.
-
-```dart
-import 'package:firebase_ai/firebase_ai.dart';
-
-final fetchWeatherGeocodeTool = FunctionDeclaration(
-  'fetchWeather',
-  'Retrieves the weather for the current date and returns geocoded location data',
-  parameters: {
-    'location': Schema.string(
-      description: 'The location for which to retrieve the weather',
-    ),
-    'date': Schema.string(
-      description:
-          'The date for which to retrieve the weather',
-    ),
-  },
-);
-```
-
-Add the import to the top of `main.dart`.
-```dart
-import 'package:genui_workshop/tool_calls.dart';
-```
-
-Update the model in `initState` from main.dart to the following:
-```dart
-final model = FirebaseAI.googleAI().generativeModel(
-      model: 'gemini-3.1-flash-lite',
-      // tools: [
-      //   Tool.functionDeclarations([fetchWeatherGeocodeTool]),
-      // ],
-    );
-```
-
-....
-TBD
-
+- **Flutter**: Discover guides, tutorials, and widget references at the [Official Flutter Documentation](https://docs.flutter.dev).
+- **Firebase AI Logic**: Learn how to securely integrate generative AI models directly into your web and mobile apps on the [Firebase AI Logic Documentation](https://firebase.google.com/docs/ai-logic).
+- **A2UI Protocol**: Understand the Agent-to-User Interface protocol specification and ecosystem at the [A2UI Official Site](https://a2ui.org).
