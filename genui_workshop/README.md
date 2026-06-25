@@ -11,7 +11,7 @@
 
 1.  Click **Continue**.
 
-1.  If prompted, review and accept the [Firebase terms](/terms), and then click
+1.  If prompted, review and accept the Firebase terms, and then click
     **Continue**.
 
 1.  Click **Create project**, wait for your project to provision, and then click
@@ -35,7 +35,7 @@ To enable Firebase AI Logic in your Firebase project:
 
 Cloud Shell space is persistent between projects so make sure you are creating things in proper project directories.
 
-## Step 3: Creating the project
+## Step 3: Creating the Flutter project
 
 Cloud shell needs to link to the stored version of Flutter so we need the following command before running `flutter`.
 
