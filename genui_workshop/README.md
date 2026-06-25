@@ -868,3 +868,4 @@ For more information and detailed references on the technologies used in this wo
 - **Flutter**: Discover guides, tutorials, and widget references at the [Official Flutter Documentation](https://docs.flutter.dev).
 - **Firebase AI Logic**: Learn how to securely integrate generative AI models directly into your web and mobile apps on the [Firebase AI Logic Documentation](https://firebase.google.com/docs/ai-logic).
 - **A2UI Protocol**: Understand the Agent-to-User Interface protocol specification and ecosystem at the [A2UI Official Site](https://a2ui.org).
+- [**GenUI SDK for Flutter**](https://docs.flutter.dev/ai/genui)
