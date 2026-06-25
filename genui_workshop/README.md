@@ -55,11 +55,11 @@ Next we can attach our local code to the previously created project with `flutte
 dart pub global activate flutterfire_cli
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-cd <project_directory>
+cd genui_workshop
 flutterfire configure
-;; Select the project you just created
-;; deselect all but web
 ```
+Select the project you just created;
+deselect all but web
 
 ```shell
 flutter pub add genui firebase_core firebase_ai json_schema_builder
@@ -349,7 +349,8 @@ Add the system instruction to `genui_utils.dart`.
 ''';
 ```
 
-Test app. It runs but doesn't really repsond.
+Run the app.
+It runs and responds with weather information, but no generative UI yet.
 
 ## Integrate GenUI package
 Add the following to `genui_utils.dart`
@@ -407,7 +408,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late final Catalog catalog;
 ```
 
-RUN.
+Run the app.
 
 Update `_addMessage` and `sendAndReceive` like in code lab.
 
@@ -462,9 +463,7 @@ Update `_addMessage` and `sendAndReceive` like in code lab.
   }
 ```
 
-TEST.
-
-### Actually wire up A2UI
+### Wire up A2UI
 
 Add to the end of initState.
 ```dart
@@ -685,7 +684,8 @@ class _WeatherInputState extends State<WeatherInput> {
   }
 }
 ```
-- Add `weatherInput` as a new item in the basic catalog by importing it and adding it to `newItems` in `lib/main.dart`:
+
+Add `weatherInput` as a new item in the basic catalog by importing it and adding it to `newItems` in `lib/main.dart`:
 
 ```dart
 import 'package:genui_workshop/catalog/weather_input.dart';
@@ -695,9 +695,9 @@ import 'package:genui_workshop/catalog/weather_input.dart';
     );
 ```
 
-- Change the system prompt to point it to the catalog item.
+Change the system prompt to point it to the catalog item.
+Add this to end of the system instruction prompt:
 
-Add this to end of the system instruction prompt.
 ```dart
 
   ## USER INTERFACE
@@ -858,6 +858,8 @@ var fakeForecast = {
       'https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png',
 };
 ```
+
+Run the app.
 
 ## Learn more
 
