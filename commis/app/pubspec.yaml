@@ -1,0 +1,59 @@
+name: commis
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^4.11.0
+  firebase_auth: ^6.0.0
+  firebase_ai: ^3.13.1
+  cloud_firestore: ^6.0.0
+  cloud_functions: ^6.3.3
+  genui:
+    git:
+      url: https://github.com/flutter/genui.git
+      ref: f2b94cea1876cea42ae9c44c6dcae532d3072d28
+      path: packages/genui
+  json_schema_builder: ^0.1.5
+  google_fonts: ^8.1.0
+  cupertino_icons: ^1.0.8
+  go_router: ^17.3.0
+  provider: ^6.1.5+1
+  flutter_markdown: ^0.7.7+1
+  google_maps_flutter: ^2.17.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/ingredients/200/
+    - assets/images/recipes/200/
+  
+# Dependency overrides are required because client-side functions are currently
+# available @HEAD, but not in the published version (they're the new hotness!).
+dependency_overrides:
+  json_schema_builder:
+    git:
+      url: https://github.com/flutter/genui.git
+      ref: f2b94cea1876cea42ae9c44c6dcae532d3072d28
+      path: packages/json_schema_builder
+  a2ui_core:
+    git:
+      url: https://github.com/flutter/genui.git
+      ref: f2b94cea1876cea42ae9c44c6dcae532d3072d28
+      path: packages/a2ui_core
+  genai_primitives:
+    git:
+      url: https://github.com/flutter/genui.git
+      ref: f2b94cea1876cea42ae9c44c6dcae532d3072d28
+      path: packages/genai_primitives

@@ -1,0 +1,4 @@
+## Firebase logs
+*-debug.log
+.env.local
+.dart_tool
