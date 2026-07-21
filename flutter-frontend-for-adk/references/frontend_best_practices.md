@@ -93,7 +93,7 @@ Widget buildMarkdownMessage(BuildContext context, String text, Color textColor) 
 To ensure code cleanliness, maintain structure, and comply with standard style rules, imports must be structured according to the `directives_ordering` rule.
 
 ### 1. Enable Linter Rule
-Ensure that the `directives_ordering` rule is enabled in the project's [analysis_options.yaml](file:///Users/redbrogdon/source/flutter-adk/frontend/analysis_options.yaml):
+Ensure that the `directives_ordering` rule is enabled in the project's [analysis_options.yaml](frontend/analysis_options.yaml):
 
 ```yaml
 linter:

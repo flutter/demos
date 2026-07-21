@@ -81,4 +81,4 @@ Once the workspace is cleaned, instruct Antigravity to use the installed custom 
 You can use a prompt such as:
 > "Please use the `flutter-frontend-for-adk` skill to create a new, Flutter-based frontend for the agent."
 
-Antigravity will activate the skill and proceed through the six phases described in the [SKILL.md](file:///Users/redbrogdon/source/demos/flutter-frontend-for-adk/SKILL.md) file, prompting you for input and approval at the end of each phase before continuing to the next.
+Antigravity will activate the skill and proceed through the six phases described in the [SKILL.md](SKILL.md) file, prompting you for input and approval at the end of each phase before continuing to the next.

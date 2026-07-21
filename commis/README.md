@@ -19,8 +19,8 @@ graph TD
 
 This project is divided into two primary workspaces:
 
-1.  **[Flutter Application (app/)](file:///Users/redbrogdon/source/commis/app/README.md)**: The Flutter frontend application displaying upcoming catering jobs, menus, ingredient listings, and hosting the interactive AI Culinary Assistant chat interface.
-2.  **[Cloud Functions (functions/)](file:///Users/redbrogdon/source/commis/functions/README.md)**: The serverless backend codebase written in Dart. This includes Firestore triggers that monitor job updates to automatically generate and cache recommended UI cards using Gemini.
+1.  **[Flutter Application (app/)](app/README.md)**: The Flutter frontend application displaying upcoming catering jobs, menus, ingredient listings, and hosting the interactive AI Culinary Assistant chat interface.
+2.  **[Cloud Functions (functions/)](functions/README.md)**: The serverless backend codebase written in Dart. This includes Firestore triggers that monitor job updates to automatically generate and cache recommended UI cards using Gemini.
 
 Refer to the individual `README.md` files linked above for specific setup and configuration details for each component.
 
