@@ -19,7 +19,7 @@ class _MyHomePageState extends ConsumerState<FlutterFireAILiveAPIDemo> {
   bool _audioIsInitialized = false;
   bool _videoIsInitialized = false;
   final LiveGenerativeModel
-  _liveModel = FirebaseAI.vertexAI().liveGenerativeModel(
+  _liveModel = FirebaseAI.agentPlatform().liveGenerativeModel(
     model: 'gemini-2.0-flash-live-preview-04-09',
     systemInstruction: Content.text(
       'You are a plant identifier. Greet the user by telling them that you '

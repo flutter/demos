@@ -17,7 +17,7 @@ Flutter apps.
 
 ## Getting Started
 
-1. Follow [these instructions](https://firebase.google.com/docs/ai-logic/get-started?&api=vertex#set-up-firebase) 
+1. Follow [these instructions](https://firebase.google.com/docs/ai-logic/get-started?&api=dev#set-up-firebase) 
 to set up a Firebase project & connect the app to Firebase using `flutterfire configure`
 
 1. Run `flutter pub get` in the root of the project directory `flutter_ai` to
