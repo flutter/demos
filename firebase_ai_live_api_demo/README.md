@@ -1,7 +1,7 @@
 # Firebase AI Logic Live API Demo
 **Target Platforms:** iOS, Android, Web
 
-**Tech Stack:** [Flutter](https://flutter.dev/) (frontend), [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) (Gemini API in Vertex AI for the backend)
+**Tech Stack:** [Flutter](https://flutter.dev/) (frontend), [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) (Gemini Enterprise Agent Platform for the backend)
 
 ![Plant Identifier – Firebase AI Live API Demo App on mobile & web](README/PlantIdentifierHero.png)
 
@@ -74,5 +74,5 @@ or take some sort of action.
 - [Firebase AI Logic docs](https://firebase.google.com/docs/ai-logic)
 
 Feeling inspired? Check out these other Flutter & Firebase AI Logic sample apps!
-- [Agentic App Manager](https://github.com/flutter/demos/tree/main/agentic_app_manager): Build an agentic experience in a Flutter app using Firebase AI Logic with the Gemini API in Vertex AI.
+- [Agentic App Manager](https://github.com/flutter/demos/tree/main/agentic_app_manager): Build an agentic experience in a Flutter app using Firebase AI Logic with the Gemini Enterprise Agent Platform.
 - [Colorist](https://github.com/flutter/demos/tree/main/vertex_ai_firebase_flutter_app): Explore LLM tooling interfaces by allowing users to describe colors in natural language. The app uses Gemini LLM to interpret descriptions and change the color of a displayed square by calling specialized color tools.
