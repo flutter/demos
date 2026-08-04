@@ -21,7 +21,7 @@ Before running the application, you must link it to your own Firebase project.
    ```bash
    flutterfire configure
    ```
-   This generates a local [firebase_options.dart](file:///Users/redbrogdon/source/commis/app/lib/firebase_options.dart) file, as well as the platform-specific configuration files (`google-services.json` and `GoogleService-Info.plist`) which are gitignored.
+   This generates a local [firebase_options.dart](app/lib/firebase_options.dart) file, as well as the platform-specific configuration files (`google-services.json` and `GoogleService-Info.plist`) which are gitignored.
 
 ### Running the App
 - **Local Emulator Mode (Default)**: In debug mode, the app automatically routing requests to `localhost:8080` (Firestore) and `localhost:5001` (Functions). Simply start your Firebase Emulator Suite in the root directory and run:
@@ -43,7 +43,7 @@ To regenerate the `catalog_prompt.txt` file, run:
 ```bash
 flutter test test/generate_prompt_test.dart
 ```
-This parses the catalog defined in [catalog.dart](file:///Users/redbrogdon/source/commis/app/lib/ui/catalog/catalog.dart) and saves the output to `catalog_prompt.txt`.
+This parses the catalog defined in [catalog.dart](app/lib/ui/catalog/catalog.dart) and saves the output to `catalog_prompt.txt`.
 
 ---
 
