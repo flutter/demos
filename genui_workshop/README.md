@@ -23,9 +23,9 @@ Cloud Shell allows you to work with our products in a containerized environments
 
 Cloud Shell space is persistent between projects so make sure you are creating things in proper project directories. 
 
-![Cloud Shell Console](firebase-console.png)
+![Cloud Shell Console](assets/firebase-console.png)
 
-![Cloud Shell Creating An Environment](firebase-console2.png)
+![Cloud Shell Creating An Environment](assets/firebase-console2.png)
 
 ## Step 3: Creating the Flutter project
 
