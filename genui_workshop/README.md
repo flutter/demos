@@ -55,6 +55,8 @@ To enable Firebase AI Logic in your Firebase project:
 
 1.  Click **Enable API** and confirm.
 
+NOTE: Since this workshop was written, AppCheck became default on newly created project. For the purposes of this demo, change the setting to Unenforced.
+
 Next we can attach our local code to the previously created project with `flutterfire`. We only need the web target.
 
 ```shell
