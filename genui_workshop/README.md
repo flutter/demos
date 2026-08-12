@@ -17,23 +17,15 @@
 1.  Click **Create project**, wait for your project to provision, and then click
     **Continue**.
 
-### Enable Firebase AI Logic
-
-To enable Firebase AI Logic in your Firebase project:
-
-1.  In the Firebase console, go to **AI Services** >
-    [**AI Logic**](https://console.firebase.google.com/project/_/ailogic/).
-
-1.  Click **Get started**.
-
-1.  Choose to use the _Gemini Developer API_ by clicking
-    **Get started with this API**.
-
-1.  Click **Enable API** and confirm.
-
 ## Step 2: Activate Cloud Shell
 
-Cloud Shell space is persistent between projects so make sure you are creating things in proper project directories.
+Cloud Shell allows you to work with our products in a containerized environments without the need to download everything to your machine.
+
+Cloud Shell space is persistent between projects so make sure you are creating things in proper project directories. 
+
+![Cloud Shell Console](firebase-console.png)
+
+![Cloud Shell Creating An Environment](firebase-console2.png)
 
 ## Step 3: Creating the Flutter project
 
@@ -49,6 +41,20 @@ We'll be starting with an empty project and adding code as we go. Warning that t
 flutter create --empty genui_workshop
 ```
 
+### Step 4: Enable Firebase AI Logic
+
+To enable Firebase AI Logic in your Firebase project:
+
+1.  In the Firebase console, go to **AI Services** >
+    [**AI Logic**](https://console.firebase.google.com/project/_/ailogic/).
+
+1.  Click **Get started**.
+
+1.  Choose to use the _Gemini Developer API_ by clicking
+    **Get started with this API**.
+
+1.  Click **Enable API** and confirm.
+
 Next we can attach our local code to the previously created project with `flutterfire`. We only need the web target.
 
 ```shell
@@ -58,8 +64,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 cd genui_workshop
 flutterfire configure
 ```
-Select the project you just created;
-deselect all but web
+Select the project you just created;select only web.
 
 ```shell
 flutter pub add genui firebase_core firebase_ai json_schema_builder
@@ -73,7 +78,7 @@ flutter build web
 python -m http.server 8080 --directory build/web
 ```
 
-## Step 4: Setup GenUI scaffolding.
+## Step 5: Setup GenUI scaffolding.
 
 Create `lib/genui_utils.dart`
 ```dart
