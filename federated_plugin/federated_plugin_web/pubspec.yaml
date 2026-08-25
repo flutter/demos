@@ -16,8 +16,6 @@ dependencies:
   web: ^1.1.0
 
 dev_dependencies:
-  analysis_defaults:
-    path: ../../../analysis_defaults
   flutter_test:
     sdk: flutter
   integration_test:
