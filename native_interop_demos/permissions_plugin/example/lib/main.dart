@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:permissions_plugin/gen/android.g.dart';
+import 'package:jni_flutter/jni_flutter.dart';
 import 'package:permissions_plugin/permissions_plugin.dart';
-import 'package:jni/jni.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,13 +59,13 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('Running on: $_platformVersion\n'),
               FilledButton(
-                child: Text("Request Camera Permissions"),
+                child: const Text("Request Camera Permissions"),
                 onPressed: () {
-_permissionsPlugin.checkAndRequestPermission(
-        Jni.androidApplicationContext,
-        "android.permission.CAMERA",
-        () {},
-      );
+                  _permissionsPlugin.checkAndRequestPermission(
+                    androidApplicationContext,
+                    "android.permission.CAMERA",
+                    () {},
+                  );
                 },
               ),
             ],

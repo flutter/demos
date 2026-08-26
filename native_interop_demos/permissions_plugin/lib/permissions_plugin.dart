@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
-
-import 'permissions_plugin_platform_interface.dart';
-import 'gen/android.g.dart';
 import 'package:jni/jni.dart';
+import 'package:jni_flutter/jni_flutter.dart';
+
+import 'gen/android.g.dart';
+import 'permissions_plugin_platform_interface.dart';
 
 class PermissionsPlugin {
   Future<String?> getPlatformVersion() {
@@ -13,7 +14,7 @@ class PermissionsPlugin {
   bool checkPermission(JObject context, String permission) {
     // Returns a simple true or false if the permission has been granted
     var result = ContextCompat.checkSelfPermission(
-      context,
+      context.as(Context.type),
       permission.toJString(),
     );
     return result == PackageManager.PERMISSION_GRANTED ? true : false;
@@ -25,11 +26,14 @@ class PermissionsPlugin {
     Function callback,
   ) {
     // Do I have permission?
-    if (ContextCompat.checkSelfPermission(context, permission.toJString()) ==
+    if (ContextCompat.checkSelfPermission(
+          context.as(Context.type),
+          permission.toJString(),
+        ) ==
         PackageManager.PERMISSION_GRANTED) {
       callback();
     } else if (ActivityCompat.shouldShowRequestPermissionRationale(
-          Jni.androidActivity(PlatformDispatcher.instance.engineId!),
+          androidActivity(PlatformDispatcher.instance.engineId!)?.as(Activity.type),
           permission.toJString(),
         ) ==
         true) {
@@ -41,7 +45,7 @@ class PermissionsPlugin {
     } else {
       // Ask for permission
       ActivityCompat.requestPermissions(
-        Jni.androidActivity(PlatformDispatcher.instance.engineId!),
+        androidActivity(PlatformDispatcher.instance.engineId!)?.as(Activity.type),
         JArray.of(JString.type, [permission.toJString()]),
         0,
       );
