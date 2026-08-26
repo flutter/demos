@@ -13,6 +13,7 @@ void main(List<String> args) {
         ),
       ),
       androidSdkConfig: AndroidSdkConfig(addGradleDeps: true),
+      classPath: [packageRoot.resolve('build/app/tmp/kotlin-classes/release')],
       classes: [
         'android.widget.Toast', // provided by Android OS
       ],

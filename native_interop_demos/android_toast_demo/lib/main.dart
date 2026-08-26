@@ -2,15 +2,14 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:android_toast_demo/gen/android/os/_package.dart';
+import 'package:android_toast_demo/gen/android/content/_package.dart';
 import 'package:android_toast_demo/gen/android/widget/_package.dart';
-import 'package:flutter/foundation.dart';
+import 'package:android_toast_demo/gen/java/lang/_package.dart';
 import 'package:flutter/material.dart';
 import 'package:jni/jni.dart';
+import 'package:jni_flutter/jni_flutter.dart';
 
-
-JObject context = Jni.androidApplicationContext;
-
+var context = androidApplicationContext.as(Context.type);
 
 /// Display DateTime retrieved from Dart
 void showToast() {
@@ -21,7 +20,11 @@ void showToast() {
 //              CharSequence text,
 //                int duration)
 // First one uses R namespace resources
-  Toast.makeText$1(context, message.toJString(), Toast.LENGTH_LONG)!.show();
+  Toast.makeText$1(
+    context,
+    message.toJString().as(CharSequence.type),
+    Toast.LENGTH_LONG,
+  )!.show();
 }
 
 void main() {

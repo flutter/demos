@@ -14,14 +14,15 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  jni: ^0.15.2
-  jnigen: ^0.15.0
+  jni: ^1.0.3
+  jni_flutter: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+  jnigen: ^0.17.0
 
 flutter:
 
