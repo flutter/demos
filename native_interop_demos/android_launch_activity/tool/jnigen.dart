@@ -13,7 +13,7 @@ void main(List<String> args) {
         ),
       ),
       androidSdkConfig: AndroidSdkConfig(addGradleDeps: true),
-      sourcePath: [packageRoot.resolve('android/src/main/kotlin/com/example/android_launch_activity')],
+      classPath: [packageRoot.resolve('build/app/tmp/kotlin-classes/release')],
       classes: [
         // provided by Android OS
         'android.os.Bundle',
