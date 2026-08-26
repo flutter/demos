@@ -8,6 +8,18 @@ import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/Options.dart';
 import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/impl/Iq80DBFactory.dart';
 import 'package:jni_leveldb/gen/leveldb/org/iq80/leveldb/impl/SeekingIteratorAdapter.dart';
 
+extension on List<int> {
+  JByteArray toJByteArray() {
+    final array = JByteArray(length);
+    array.setRange(0, length, this);
+    return array;
+  }
+}
+
+extension on JByteArray {
+  Uint8List toUint8List() => Uint8List.fromList(getRange(0, length));
+}
+
 class LevelDB {
   final DB _db;
 
@@ -27,10 +39,10 @@ class LevelDB {
     putBytes(utf8.encode(key), utf8.encode(value));
   }
 
-  void putBytes(Uint8List key, Uint8List value) {
+  void putBytes(List<int> key, List<int> value) {
     using((arena) {
-      final jKey = JByteArray.from(key)..releasedBy(arena);
-      final jValue = JByteArray.from(value)..releasedBy(arena);
+      final jKey = key.toJByteArray()..releasedBy(arena);
+      final jValue = value.toJByteArray()..releasedBy(arena);
       _db.put(jKey, jValue);
     });
   }
@@ -43,16 +55,16 @@ class LevelDB {
     return utf8.decode(value);
   }
 
-  Uint8List? getBytes(Uint8List key) {
+  Uint8List? getBytes(List<int> key) {
     return using((arena) {
-      final jKey = JByteArray.from(key)..releasedBy(arena);
+      final jKey = key.toJByteArray()..releasedBy(arena);
       final value = _db.get(jKey);
       if (value == null) {
         return null;
       }
-      final bytes = value.toList();
+      final bytes = value.toUint8List();
       value.release();
-      return Uint8List.fromList(bytes);
+      return bytes;
     });
   }
 
@@ -60,9 +72,9 @@ class LevelDB {
     deleteBytes(utf8.encode(key));
   }
 
-  void deleteBytes(Uint8List key) {
+  void deleteBytes(List<int> key) {
     using((arena) {
-      final jKey = JByteArray.from(key)..releasedBy(arena);
+      final jKey = key.toJByteArray()..releasedBy(arena);
       _db.delete(jKey);
     });
   }
@@ -79,20 +91,20 @@ class LevelDB {
       while (iterator.hasNext()) {
         final entry = iterator.next();
         if (entry == null) continue;
-        
-        final keyBytes = entry.getKey();
-        final valueBytes = entry.getValue();
+
+        final keyBytes = entry.key;
+        final valueBytes = entry.value;
 
         if (keyBytes == null || valueBytes == null) {
-            keyBytes?.release();
-            valueBytes?.release();
-            entry.release();
-            continue;
+          keyBytes?.release();
+          valueBytes?.release();
+          entry.release();
+          continue;
         }
-        
-        final key = utf8.decode(keyBytes.toList());
-        final value = utf8.decode(valueBytes.toList());
-        
+
+        final key = utf8.decode(keyBytes.toUint8List());
+        final value = utf8.decode(valueBytes.toUint8List());
+
         keyBytes.release();
         valueBytes.release();
         entry.release();

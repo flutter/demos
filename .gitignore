@@ -90,3 +90,5 @@ native_interop_demos/ios_calendar_demo/lib/eventkit_bindings.dart
 native_interop_demos/ios_calendar_demo/ios/Runner/eventkit_wrapper.m
 native_interop_demos/ios_calendar_demo/ios/Runner/eventkit_wrapper.swift
 /native_interop_demos/ios_calendar_demo/temp
+/native_interop_demos/jnigen_db_native_interop/lib/gen
+/native_interop_demos/jnigen_db_native_interop

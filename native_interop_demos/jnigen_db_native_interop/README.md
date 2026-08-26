@@ -10,12 +10,11 @@ A sample command-line application demonstrating how to create an idiomatic Dart 
 
 1.  **Generate Bindings and Build JNI code:**
 
-    Run `jnigen` to download the required Java libraries, generate Dart bindings, and build the JNI glue code.
+    Build the JNI native library and run `tool/jnigen.dart` to download dependencies and generate Dart bindings:
 
     ```bash
     dart run jni:setup
-    dart run jnigen:setup
-    dart run jnigen --config jnigen.yaml
+    dart run tool/jnigen.dart
     ```
 
 2.  **Run the application:**
@@ -38,10 +37,10 @@ JNI objects are handles to resources in the JVM. Failing to release them causes 
 
 *Example from the wrapper:*
 ```dart
-void putBytes(Uint8List key, Uint8List value) {
+void putBytes(List<int> key, List<int> value) {
   using((arena) {
-    final jKey = JByteArray.from(key)..releasedBy(arena);
-    final jValue = JByteArray.from(value)..releasedBy(arena);
+    final jKey = key.toJByteArray()..releasedBy(arena);
+    final jValue = value.toJByteArray()..releasedBy(arena);
     _db.put(jKey, jValue);
   });
 }
@@ -75,14 +74,14 @@ The JVM is a process-level resource and should be initialized only once when the
 
 **The Problem:** Calling `Jni.spawn()` inside library code.
 
-**The Solution:** `Jni.spawn()` belongs in a locatio where it will be called once, like your application's `main()` function, not in the library. In this example, the library code should assume the JVM is already running.
+**The Solution:** `Jni.spawn()` belongs in a location where it will be called once, like your application's `main()` function, not in the library. In this example, the library code should assume the JVM is already running.
 
 *Correct Usage in `bin/jni_leveldb.dart`:*
 ```dart
 void main(List<String> arguments) {
-  // ... find JARs ...
-  Jni.spawn(classPath: jars); // Spawn the JVM once.
-  db();                      // Run the application logic.
+  // ... find JARs and dynamic library path ...
+  Jni.spawn(dylibDir: dylibDir, classPath: jars); // Spawn the JVM once.
+  db();                                          // Run the application logic.
 }
 ```
 
