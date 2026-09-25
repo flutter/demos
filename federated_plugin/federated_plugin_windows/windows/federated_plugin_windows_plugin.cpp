@@ -63,8 +63,7 @@ void FederatedPluginWindowsPlugin::HandleMethodCall(
       int batteryLevel = systemPower.BatteryLifePercent;
       // The batteryLevel value in the range 0 to 100, or 255 if status is unknown.
       if (batteryLevel != 255) {
-        flutter::EncodableValue response(batteryLevel);
-        result->Success(response);
+        result->Success(flutter::EncodableValue(batteryLevel));
       }
       else {
         result->Error("STATUS_UNAVAILABLE", "Not able to determine battery level.");
