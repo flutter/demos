@@ -1,23 +1,34 @@
-name: Auto Reply to New PRs
+name: Auto reply to new PRs
 
 on:
-  pull_request:
+  # pull_request_target is needed so the comment can
+  # also be posted on PRs from forks.
+  # It's safe here because the workflow doesn't check out or
+  # run PR code and doesn't interpolate any PR-controlled values.
+  # Keep it that way if you edit this workflow.
+  pull_request_target: # zizmor: ignore[dangerous-triggers]
     types: [opened]
+
+# Default to no permissions,
+# so each job must explicitly request only what it needs.
+permissions: {}
 
 jobs:
   welcome:
+    name: Post welcome message
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write # Grant write permission for creating comments
+      # Grant write permission for creating comments.
+      pull-requests: write
     steps:
-      - name: Post Welcome Message
-        uses: actions/github-script@v5
+      - name: Post welcome comment
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Thank you for opening this Pull Request! This repository is for demo purposes only. It's not maintained and there is no CI or merge rules. If you have permissions, you're free to merge the PR without review. If you'd like a review, please explicitly request it."
+              body: "Thank you for opening this pull request! This repository is for demo purposes only. It's not maintained and there are no CI checks or merge rules. If you have permissions, you're free to merge the PR without review. If you'd like a review, please explicitly request it."
             })
