@@ -1,3 +1,4 @@
-# Demos archive
+# Flutter and Dart archived demos
 
-This folder houses demos that are no longer being used for talks, are known to not work, or otherwise we believe are no longer relevant.
+This directory houses demos that are no longer being used or referenced,
+are known to not work, or otherwise we believe are no longer relevant.
