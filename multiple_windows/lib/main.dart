@@ -30,11 +30,21 @@ class _MainWindowDelegate extends WindowControllerDelegate {
 }
 
 class _MainAppState extends State<MainApp> {
-  final controller = WindowController(
-    size: const Size(800, 600),
-    title: 'Main Window',
-    delegate: _MainWindowDelegate(),
-  );
+  WindowController? _windowController;
+
+  @override
+  void initState() {
+    super.initState();
+    if (defaultTargetPlatform == TargetPlatform.macOS ||
+        defaultTargetPlatform == TargetPlatform.windows ||
+        defaultTargetPlatform == TargetPlatform.linux) {
+      _windowController = WindowController(
+        size: const Size(800, 600),
+        title: 'Main Window',
+        delegate: _MainWindowDelegate(),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +52,12 @@ class _MainAppState extends State<MainApp> {
       home: Scaffold(body: Center(child: Text('Hello World!'))),
     );
 
-    if (defaultTargetPlatform == TargetPlatform.macOS ||
-        defaultTargetPlatform == TargetPlatform.windows ||
-        defaultTargetPlatform == TargetPlatform.linux) {
+    final windowController = _windowController;
+    if (windowController != null) {
       return WindowManager(
         initialWindows: [
           WindowEntry(
-            controller: controller,
+            controller: windowController,
             builder: (context) {
               return app;
             },
@@ -56,7 +65,8 @@ class _MainAppState extends State<MainApp> {
         ],
       );
     } else {
-      return app;
+      // Platforms without windowing rely on implicit view.
+      return WidgetsBinding.instance.wrapWithDefaultView(app);
     }
   }
 }
